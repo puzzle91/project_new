@@ -1,8 +1,6 @@
 import itertools 
 import math
 import csv
-from typing import Mapping,Iterable
-import random
 from Airport import Airport
 from Currency import Currency
 from CountryCurrency import Countrycurrency
@@ -65,8 +63,7 @@ class AirportAtlas:
 
       
 
-#        airport_1 = airport_1(Mapping[str,str],[str,int],[str,str],[str,str],[str,str],[str,float],[str,float])
-#        airport_2 = airport_2(Mapping[str,str],[str,int],[str,str],[str,str],[str,str],[str,float],[str,float])
+
         #my airport data is in tuple (code,lat,long,ID,Country,city,name) so i acess the values by index
             lat1  = airport_1[1]
             long1 = airport_1[2]
@@ -141,48 +138,7 @@ class AirportAtlas:
         print(trips_possible_1)
         print(len(trips_possible_1))
 
-        # trips_possible_1 = [list(i) for i in trips_possible_1]
-        # #second trip
-        # trips_possible_2 = list(itertools.permutations([home,airport_2,airport_3,airport_4,airport_5], 5))
-
-        # trips_possible_2 = [list(i) for i in trips_possible_2]
-
-        # #third trip
-        # trips_possible_3 = list(itertools.permutations([home,airport_2,airport_3,airport_4,airport_5], 5))
-
-        # trips_possible_3 = [list(i) for i in trips_possible_3]
-
-        #  #fourth trip
-        # trips_possible_4 = list(itertools.permutations([home,airport_2,airport_3,airport_4,airport_5], 5))
-
-        # trips_possible_4 = [list(i) for i in trips_possible_4]
-
-        #  #fifth trip
-        # trips_possible_5 = list(itertools.permutations([home,airport_2,airport_3,airport_4,airport_5], 5))
-
-        # trips_possible_5 = [list(i) for i in trips_possible_5]
-
-        #potential legs based on trips
-        # first_leg=list(trips_possible_1)
-
-        # second_leg = list(trips_possible_2)
-
-        # third_leg = list(trips_possible_3)
-
-        # fourth_leg = list(trips_possible_4)
-
-        # fifth_leg= list(trips_possible_5)
-
-        #make trips_possible into a full list:
-        #max_possible_permuations = list(trips_possible_1 + trips_possible_2+ trips_possible_3,trips_possible_4+trips_possible_5)
-        #I assume that the airport has one main flight leg between two airports at close proximity and travels between them#
-        # main_leg = list(itertools.permutations([first_leg,second_leg,third_leg,fourth_leg,fifth_leg], 2))
-        # return("potential main leg:", main_leg)
-
-        # max_possible_permuations = list(fifth_leg + fourth_leg + third_leg +second_leg+first_leg)
-        #return (max_possible_permuation)    
-        #Change it from being a list of tuples into a list of lists where the ith element
-        #  is the list inside the list(so we can calcuate leg journeys)
+    
 
         total_trip_costs = []
 
@@ -196,7 +152,7 @@ class AirportAtlas:
             tuple_values.append(tuple_values[0])
            
             
-            print(tuple_values)
+            print("Possible permutation:", tuple_values)
 
             #creating lists to store my trips later
             total_distance_list=[]   
@@ -216,62 +172,54 @@ class AirportAtlas:
             #print(trip_1)
 
             trip_1=float(trip_1)
-            trips.append(trip_1)
             cost1=trip_1
            
-            total_cost += trip_1 
+            total_cost += cost1 
             #cost is in euro as it fuels in Dublin
             #print(trip_1)
       
             trip_2=calculate.getAirportDistance(tuple_values[1],tuple_values[2])
 
             trip_2=float(trip_2)
-            trips.append(trip_2)
             cost2=trip_2*pound
             
-            total_cost += trip_2
+            total_cost += cost2
             #cost is in pounds as it fuels in London
 
 
             trip_3=calculate.getAirportDistance(tuple_values[2],tuple_values[3])
             trip_3=float(trip_3)
-            trips.append(trip_3)
+          
             cost3=trip_3*dollar
             
-            total_cost += trip_3
+            total_cost += cost3
             #cost is in Dollars as it fuels in New york
 
             trip_4=calculate.getAirportDistance(tuple_values[3],tuple_values[4])
             trip_4=float(trip_4)
-            trips.append(trip_4)
+           
             cost4=trip_4*pound
             
-            total_cost += trip_4
+            total_cost += cost4
             #cost is in pounds as it fuels again back in london
     
             trip_5=calculate.getAirportDistance(tuple_values[4],tuple_values[0])
-            # trip_5=float(trip_5)
-            # trips.append(trip_5)
-            # cost5=int(trip_5)
-            total_cost += trip_5
-            #back in dublin
+            
+         
+            cost5=float(trip_5)
+            total_cost += cost5
+            #back in dublin so EURO
 
-            print(total_cost)
+            #print(total_cost)
 
-            all_triplist = trips[:]
-
-            minimum_distance=min(trips) #Min distance route is the optimum route for the 5 plane problem for is little currency
-            # fluctuation between the airports/countries I am using (JFK, LHR, DUB, CDG) as Dublin also always occurs at least twice. 
-            maximum_distance=max(trips)
-            #print("The minimum distance covered in this journey is:",minimum_distance,"the maximum distance covered in this journey is:", maximum_distance)
-
+         
             
             #print (total_cost, tuple_values)
             
                 
             total_trip_costs.append([total_cost, tuple_values])
 
-            print(total_trip_costs)
+            #print(total_trip_costs)
             
             np.total_trip_costs=total_trip_costs
             total_trip_costs = sorted(total_trip_costs, key=lambda total_trip_costs_entry: total_trip_costs_entry[0])
@@ -280,8 +228,9 @@ class AirportAtlas:
         #print(total_trip_costs)  
            
             
-            print("The cheapest itenerary in the list is:", total_trip_costs[0])
-            print ("The most expensive itenerary is:", total_trip_costs[-1])
+        #print("The the most optimum (cheapest) itenerary in the list for a 5 flight simulation is:", total_trip_costs[0])
+        #print ()
+        #print ("The least optimum (most expensive) itenerary for a 5 flight simulation is:", total_trip_costs[-1])
              #alot of the first values are returning total cost is 0 or 47 so I write the conditional in 267
              #found the error in an earlir line
 
@@ -296,81 +245,39 @@ class AirportAtlas:
             # print("the maximum cost journey is:", maximumCost)
 
             
+
+        #calculating with a 6th trip
+        trip_6 = calculate.getAirportDistance(tuple_values[4],tuple_values[2])
+        total_cost+=trip_6
+
+        total_trip_costs.append([total_cost, tuple_values])
+
+        #print(total_trip_costs)
             
-            # print("minimum distance travelled for in between all trips:", minimum_distance)
-            # print ("minimum cost paid for travelling between all trips:", minimumCost)
-            # print("maximum distance travelled in between  all trips:", maximum_distance)
-            # print("maximum cost paid for travelling between all trips:", maximumCost)
-            # trip_6 = calculate.getAirportDistance(tuple_values[4],tuple_values[2])
-            # trips.append(trip_6)
-
-            # newlist_with_6th = trips[:]
-            # newlist_with_6th.append(trip_6)
-            # cost6=trip_6 
-            # total_cost.update({'trip_6':cost6})
-            # #we assume it is still in Europe
-            # total_distance=(trip_1+trip_2+trip_3+trip_4+trip_5+trip_6)
-            # #note total_distance==min(Airport.__fuel_required)
-            # print(total_distance)
-
-            # #print("total_distance travelled for trips:")
-            # total_distance_list=[trip_3 + trip_2 +trip_1+trip_5+trip_4+trip_6]
-            # #print("total_dist_list:",total_distance_list)
-            # total_dist_list = newlist_with_6th[:]
-            # print(total_dist_list)
-            # one=min(total_dist_list)
-            # print("min cost of 6th trip", one)
-            
-
-
-            # #creating a dictionary with final distance as key with all final tuples as my values because
-            # #it would be more efficient for value lookup 
-            # total_distance_dict = {}
-            
-            # total_distance_dict[total_distance] = tuple_values
-
-           
-            # #print(total_distance_dict)
-           
-            # total_dist_list = list(total_distance)[:]
-            # shortest_final_journey = min(list(total_dist_list))
-            # longest_final_journey = max(list(total_dist_list))
-
-            # print(shortest_final_journey,"longes_final_trip in km is:", longest_final_journey)
-
-           
-
-
-            # #completes in 214.secs
-            # print (total_distance_dict)
-
-            # Cost_dict={}
-
-            # trip = Airport
-
-            # #total_cost=trip*Currency.FindConversion(currencyRate,trip.getName(trip))
-            
-
-            # print(Cost_dict)
-
-
-            #print(trips)
-   
-
-            
-    #print("--- %s seconds ---" % (time.time() - start_time))
-    try:
-            currencyRate = Currency
-            currencyRate.createInstance(currencyRate,'EU')
-            #usd=currencyRate.FindConversion(currencyRate,tuple_values[1])
-            #gbp=currencyRate.FindConversion(currencyRate,tuple_values[2])
-            #euro=currencyRate.FindConversion(currencyRate,tuple_values[0])
-            costs=np.array
-            leg_dist=np.array
+        np.total_trip_costs=total_trip_costs
+        total_trip_costs = sorted(total_trip_costs, key=lambda total_trip_costs_entry: total_trip_costs_entry[0])
         
 
-    except TypeError:
-        pass
+        print ("----------------------------------------------------")
+           
+            
+        print("The most optimum  (cheapest) itenerary  for a 6 flight simulation is:", total_trip_costs[0])
+        print()
+        print ("The most least optimum (most expensive) itenerary for a 6 flights simulation is:", total_trip_costs[-1])
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
 
   
              

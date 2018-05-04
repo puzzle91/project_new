@@ -6,19 +6,19 @@ from AirportAtlas import AirportAtlas
 def main():
          
         
-        
+        File = AirportAtlas
 
-        # Code1=input('what is the first airport?').upper()
-        # Code2=input('what is the second airport?').upper()
-        # Code3=input('what is the third airport?').upper()
-        # Code4=input('What is the the fourth airport').upper()
-        # Code5=input('What is the the fifth airport').upper()
+        Code1=input('what is the home airport?').upper()
+        Code2=input('what is the second airport?').upper()
+        Code3=input('what is the third airport?').upper()
+        Code4=input('What is the the fourth airport').upper()
+        Code5=input('What is the the fifth airport').upper()
 
-       
-    
+
+
         Tester = AirportAtlas
-        # Tester=  Tester.possibleTrips(Tester, Code1, Code2, Code3, Code4,Code5)
-        Tester=  Tester.possibleTrips(Tester, "DXB", "STN", "LHR","JFK","CDG")
+        Tester=  Tester.possibleTrips(Tester, Code1, Code2, Code3, Code4,Code5)
+        #Tester=  Tester.possibleTrips(Tester, "DXB", "STN", "LHR","JFK","CDG")
         print("here")
         print(Tester)
         # airportTest = Airport

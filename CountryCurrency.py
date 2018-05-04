@@ -1,5 +1,5 @@
 import csv
-from Currency import Currency
+
 
 #getcurrency = Currency
 
@@ -32,8 +32,8 @@ class Countrycurrency:
                     self.country_currency_object=self.__CountryDict
                     
                     #print(self.__CountryDict)
-                    currencyrate_object =  Currency
-                    self.euro_to_currency=currencyrate_object.FindConversion(currencyrate_object,self.currency_alphabetic_code)
+                   
+                    
                                         
                     self.currency_name = str(self.country_currency_object['currency_name'])
                     self.currency_alphabetic_code  = str(self.country_currency_object['currency_alphabetic_code'])
@@ -68,22 +68,5 @@ class Countrycurrency:
        
     
  
-
-          
-#C=Currency
-#D=Currency
-#C = Currency.createInstance(C,'ZAR')
-#D = Currency.FindConversion(D,'ZMW')
-#print(D)
-
-
-#D=Countrycurrency.createInstance(D,'EURO')
-#X=Countrycurrency.FindCountry(X,'EURO')
-#print(D)
-
-#print(X)
-
-
-
 
 

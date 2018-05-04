@@ -51,8 +51,6 @@ class Airport:
         except KeyError:
             pass            
 
-def getname(self):
-    return self.name
-test=Airport 
+test = Airport
      
 print(test.createInstance(test,'DUB'))
